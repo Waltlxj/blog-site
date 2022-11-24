@@ -1,5 +1,5 @@
 {
-  "name": "walts-person-website",
+  "name": "personal-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@next/font": "^13.0.3",
+    "@notionhq/client": "^2.2.2",
+    "next": "^13.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "eslint-config-next": "^13.0.3"
   }
 }
