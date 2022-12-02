@@ -10,7 +10,7 @@ export default function Article({ article, pageInfo }) {
     <div className={styles.page}>
       <Head>
         <title>
-          {`Walt Li | ${pageInfo.properties?.Name.title[0].plain_text}`}
+          {`Walt Li | ${pageInfo.properties.Name.title[0].plain_text}`}
         </title>
       </Head>
       <div className={styles.container}>
@@ -21,9 +21,9 @@ export default function Article({ article, pageInfo }) {
             ← Back
           </button>
           <div className={styles.articleh1}>
-            <h1>{pageInfo.properties?.Name.title[0].plain_text}</h1>
+            <h1>{pageInfo.properties.Name.title[0].plain_text}</h1>
           </div>
-          <div>{pageInfo.properties?.Date.date.start}</div>
+          <div>{pageInfo.properties.Date.date.start}</div>
         </div>
 
         {article.map((para, index) => {
@@ -47,13 +47,14 @@ export const getStaticPaths = async () => {
   const database = await getBlogOverview();
   return {
     paths: database.map((page) => ({ params: { id: page.id } })),
-    fallback: true,
+    fallback: false,
   };
 };
 
 export async function getStaticProps({ params }) {
   const article = await getPageContent(params.id);
   const pageInfo = await getPage(params.id);
+  // console.log(pageInfo);
   return {
     props: {
       article,
