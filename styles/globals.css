@@ -58,20 +58,8 @@ p {
   margin: 0.5em 0;
 }
 
-nav {
-  text-align: center;
-}
-
 ul {
   padding: 0;
-}
-
-.container {
-  position: relative;
-  width: 96%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .navbar-list {
@@ -89,4 +77,30 @@ ul {
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.1em;
+}
+
+.navItem {
+  letter-spacing: 0.25em;
+}
+
+.navItem a:hover,
+.navItem a:focus,
+.navItem a:active {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  margin: 0;
 }

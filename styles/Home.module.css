@@ -35,10 +35,6 @@
   text-align: right;
 }
 
-.navItem {
-  letter-spacing: 0.25em;
-}
-
 .footer {
   display: flex;
   flex: 1;

@@ -7,8 +7,7 @@ export default function Gallery() {
       <Head>
         <title>Walt Li | Gallery</title>
       </Head>
-      <NavBar />
-      <h2>Photos</h2>
+      <div>Under construction</div>
     </div>
   );
 }

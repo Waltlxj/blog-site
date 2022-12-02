@@ -1,0 +1,27 @@
+.page {
+  margin: 1rem;
+  padding-bottom: 3rem;
+}
+
+.container {
+  min-width: 320px;
+  width: 33%;
+  margin: 0 auto;
+}
+
+.post {
+  margin: 2rem 0;
+}
+
+.divider {
+  text-align: center;
+}
+
+.title {
+  padding: 6rem 0;
+  text-align: right;
+}
+
+.articleh1 {
+  padding: 1rem 0;
+}
