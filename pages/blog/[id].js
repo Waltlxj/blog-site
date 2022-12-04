@@ -43,13 +43,14 @@ export default function Article({ article, pageInfo }) {
   );
 }
 
-export const getStaticPaths = async () => {
+export async function getStaticPaths() {
   const database = await getBlogOverview();
   return {
     paths: database.map((page) => ({ params: { id: page.id } })),
-    fallback: false,
+    fallback: "blocking", // { fallback: blocking } will server-render pages
+    // on-demand if the path doesn't exist.
   };
-};
+}
 
 export async function getStaticProps({ params }) {
   const article = await getPageContent(params.id);
