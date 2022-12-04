@@ -28,7 +28,7 @@ export default function Article({ article, pageInfo }) {
 
         {article.map((para, index) => {
           if (para.type === "paragraph" && para.paragraph.rich_text.length) {
-            return <p key={index}>{para.paragraph.rich_text[0].plain_text}</p>;
+            return <p key={index}>{para.paragraph.rich_text[0]?.plain_text}</p>;
           }
           if (para.type == "divider") {
             return (

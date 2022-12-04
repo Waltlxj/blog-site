@@ -25,3 +25,11 @@
 .articleh1 {
   padding: 1rem 0;
 }
+
+.postTitle {
+  letter-spacing: 0.05em;
+}
+
+.postTime {
+  line-height: 1.5em;
+}

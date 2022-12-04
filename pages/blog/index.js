@@ -8,9 +8,9 @@ import { getBlogOverview } from "../../lib/notion";
 function Post(props) {
   return (
     <div className={styles.post}>
-      <div>Written on {props.date}</div>
+      <p className={styles.postTime}>Written on {props.date}</p>
       <Link href={`/blog/${encodeURIComponent(props.id)}`}>
-        <h1>{props.title}</h1>
+        <h1 className={styles.postTitle}>{props.title}</h1>
       </Link>
       <p>{props.desc}</p>
     </div>
@@ -31,7 +31,7 @@ export default function Blog({ posts }) {
             id={post.id}
             title={post.properties.Name.title[0].plain_text}
             date={post.properties.Date.date.start}
-            desc={post.properties.Text.rich_text[0].plain_text}
+            desc={post.properties.Text.rich_text[0]?.plain_text}
           />
         ))}
       </div>
