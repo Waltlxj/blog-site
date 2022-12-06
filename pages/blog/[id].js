@@ -1,11 +1,9 @@
 import { getPageContent, getBlogOverview, getPage } from "../../lib/notion";
 import styles from "../../styles/Posts.module.css";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import NavBar from "../../components/NavBar";
+import Link from "next/link";
 
 export default function Article({ article, pageInfo }) {
-  const router = useRouter();
   return (
     <div className={styles.page}>
       <Head>
@@ -14,12 +12,8 @@ export default function Article({ article, pageInfo }) {
         </title>
       </Head>
       <div className={styles.container}>
-        {/* <NavBar /> */}
-
         <div className={styles.title}>
-          <button className="back-button" onClick={() => router.back()}>
-            ← Back
-          </button>
+          <Link href="/blog">← Back</Link>
           <div className={styles.articleh1}>
             <h1>{pageInfo.properties.Name.title[0].plain_text}</h1>
           </div>
@@ -33,7 +27,7 @@ export default function Article({ article, pageInfo }) {
           if (para.type == "divider") {
             return (
               <p key={index} className={styles.divider}>
-                ***
+                ————————
               </p>
             );
           }
