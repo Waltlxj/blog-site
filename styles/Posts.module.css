@@ -15,7 +15,7 @@
 
 .divider {
   text-align: center;
-  margin: 0.75rem 0;
+  margin: 1.5rem 0;
 }
 
 .title {
@@ -28,9 +28,57 @@
 }
 
 .postTitle {
+  display: inline;
+  font-size: 1.5rem;
   letter-spacing: 0.05em;
+  margin-right: 0.5rem;
+}
+
+.postTitle:hover {
+  text-decoration: none;
 }
 
 .postTime {
   line-height: 1.5em;
+  color: grey;
+}
+
+.tagBar {
+  margin-top: 2rem;
+}
+
+.tagButton {
+  text-decoration: none;
+  margin-right: 0.5rem;
+  padding: 0.125rem 0.325rem;
+  color: black;
+  border: solid 1px;
+}
+
+.tagButton:hover,
+.tagButton:focus,
+.tagButton:active {
+  color: white;
+  border-color: black;
+  background-color: black;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tagButton {
+    color: white;
+  }
+  .tagButton:hover,
+  .tagButton:focus,
+  .tagButton:active {
+    color: black;
+    border-color: white;
+    background-color: white;
+  }
+}
+
+.articleHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }

@@ -16,6 +16,12 @@ a {
   text-decoration: none;
 }
 
+a:hover,
+a:focus,
+a:active {
+  text-decoration: underline;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -83,12 +89,6 @@ ul {
   letter-spacing: 0.25em;
 }
 
-.navItem a:hover,
-.navItem a:focus,
-.navItem a:active {
-  text-decoration: underline;
-}
-
 button {
   font: inherit;
   border: none;
@@ -99,4 +99,12 @@ button {
 
 button:hover {
   text-decoration: underline;
+}
+
+.footer {
+  line-height: 1.25em;
+  font-size: 0.75rem;
+  margin: 1rem 0;
+  text-align: center;
+  color: rgb(140, 140, 140);
 }

@@ -4,20 +4,39 @@ import Link from "next/link";
 import styles from "../../styles/Posts.module.css";
 
 import { getBlogOverview } from "../../lib/notion";
+import { useState } from "react";
 
 function Post(props) {
   return (
     <div className={styles.post}>
-      <p className={styles.postTime}>Written on {props.date}</p>
       <Link href={`/blog/${encodeURIComponent(props.id)}`}>
-        <h1 className={styles.postTitle}>{props.title}</h1>
+        <h2 className={styles.postTitle}>{props.title}</h2>
       </Link>
+      <span className={styles.postTime}>{props.date}</span>
       <p>{props.desc}</p>
     </div>
   );
 }
 
-export default function Blog({ posts }) {
+function Collection({ posts, tag }) {
+  return (
+    <>
+      {/* <h2 className={styles.tagTitle}>{tag}</h2> */}
+      {posts.map((post, index) => (
+        <Post
+          key={index}
+          id={post.id}
+          title={post.properties.Name.title[0].plain_text}
+          date={post.properties.Date.date.start}
+          desc={post.properties.Text.rich_text[0]?.plain_text}
+        />
+      ))}
+    </>
+  );
+}
+
+export default function Blog({ posts, tags }) {
+  const [tag, setTag] = useState("");
   return (
     <div className={styles.page}>
       <Head>
@@ -25,15 +44,33 @@ export default function Blog({ posts }) {
       </Head>
       <div className={styles.container}>
         <NavBar />
-        {posts.map((post, index) => (
-          <Post
-            key={index}
-            id={post.id}
-            title={post.properties.Name.title[0].plain_text}
-            date={post.properties.Date.date.start}
-            desc={post.properties.Text.rich_text[0]?.plain_text}
+
+        <div className={styles.tagBar}>
+          <button className={styles.tagButton} onClick={() => setTag("")}>
+            全部
+          </button>
+          {tags.map((tag, index) => (
+            <button
+              key={index}
+              className={styles.tagButton}
+              onClick={() => setTag(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        {/* if no tag selected */}
+        {tag === "" && <Collection posts={posts} />}
+
+        {/* if tag selected */}
+        {tag !== "" && (
+          <Collection
+            posts={posts.filter(
+              (post) => post.properties.Tags.multi_select[0].name === tag
+            )}
           />
-        ))}
+        )}
       </div>
     </div>
   );
@@ -41,9 +78,12 @@ export default function Blog({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getBlogOverview();
+  let tags = posts.map((post) => post.properties.Tags.multi_select[0].name);
+  tags = tags.filter((x, i, a) => a.indexOf(x) === i);
   return {
     props: {
       posts,
+      tags,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

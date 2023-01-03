@@ -3,7 +3,23 @@ import styles from "../../styles/Posts.module.css";
 import Head from "next/head";
 import Link from "next/link";
 
-export default function Article({ article, pageInfo }) {
+function ArticleHeader({ prevAndNext }) {
+  return (
+    <div className={styles.articleHeader}>
+      {prevAndNext[1] && (
+        <Link href={`/blog/${encodeURIComponent(prevAndNext[1])}`}>← Prev</Link>
+      )}
+      <Link href="/blog">
+        <h2>BLOG</h2>
+      </Link>
+      {prevAndNext[0] && (
+        <Link href={`/blog/${encodeURIComponent(prevAndNext[0])}`}>Next →</Link>
+      )}
+    </div>
+  );
+}
+
+export default function Article({ article, pageInfo, prevAndNext }) {
   return (
     <div className={styles.page}>
       <Head>
@@ -12,8 +28,8 @@ export default function Article({ article, pageInfo }) {
         </title>
       </Head>
       <div className={styles.container}>
+        <ArticleHeader prevAndNext={prevAndNext} />
         <div className={styles.title}>
-          <Link href="/blog">← Back</Link>
           <div className={styles.articleh1}>
             <h1>{pageInfo.properties.Name.title[0].plain_text}</h1>
           </div>
@@ -27,7 +43,7 @@ export default function Article({ article, pageInfo }) {
           if (para.type == "divider") {
             return (
               <p key={index} className={styles.divider}>
-                ————————
+                — + —
               </p>
             );
           }
@@ -49,11 +65,28 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const article = await getPageContent(params.id);
   const pageInfo = await getPage(params.id);
-  // console.log(pageInfo);
+  const posts = await getBlogOverview();
+
+  // find prev and next post
+  const i = posts.findIndex((post) => post.id === params.id);
+  const prevAndNext = [];
+  if (i === 0) {
+    prevAndNext.push(null);
+  } else {
+    prevAndNext.push(posts[i - 1].id);
+  }
+  if (i === posts.length - 1) {
+    prevAndNext.push(null);
+  } else {
+    prevAndNext.push(posts[i + 1].id);
+  }
+  console.log(prevAndNext);
+
   return {
     props: {
       article,
       pageInfo,
+      prevAndNext,
     },
     revalidate: 120, // In seconds
   };

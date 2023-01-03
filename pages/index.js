@@ -1,8 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Link from "next/link";
-
-import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function Welcome() {
   return (
@@ -48,10 +47,9 @@ function About() {
           <p>我喜欢技术，自然，人类观察，摄影与数字艺术，声乐，口袋妖怪。</p>
           <p>
             Based on IPIP Big-Five factor markers (50-item) and the population
-            statistics, my self-report shows that I am more introverted than 91%
-            of people, more neurotic than 81% of people, less agreeable than 86%
-            of people, more conscientious than 72% of people, and more
-            intellectually active than 65% of people.
+            statistics, I am more introverted than 91%, more neurotic than 81%,
+            less agreeable than 86%, more conscientious than 72%, and more
+            intellectually active than 65% of the general population.
           </p>
           <p>
             根据五大性格特质的测量和人群数据，我自评比91%的人更内向，比81%的人更情绪多变，
@@ -71,6 +69,7 @@ export default function Home({ info }) {
       </Head>
       <Welcome />
       <About />
+      <Footer />
     </div>
   );
 }
