@@ -57,7 +57,8 @@
 
 .tagButton:hover,
 .tagButton:focus,
-.tagButton:active {
+.tagButton:active,
+.active {
   color: white;
   border-color: black;
   background-color: black;
@@ -70,7 +71,8 @@
   }
   .tagButton:hover,
   .tagButton:focus,
-  .tagButton:active {
+  .tagButton:active,
+  .active {
     color: black;
     border-color: white;
     background-color: white;

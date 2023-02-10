@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import { getPageContent } from "../lib/notion";
 
 function Welcome() {
   return (
@@ -32,54 +33,44 @@ function Welcome() {
   );
 }
 
-function About() {
+function About({ introduction }) {
   return (
     <div className={styles.page}>
       <div className={styles.articleContainer}>
         <h2>about me</h2>
         <div>
-          <p>I am senior psychology and CS major at Carleton College, MN.</p>
-          <p>卡尔顿学院大四心理学与计算机科学双专业。</p>
-          <p>
-            I like technology, nature, people-watching, sci-fi, photography &
-            digital art, classical singing, Pokémon.
-          </p>
-          <p>我喜欢技术，自然，人类观察，摄影与数字艺术，声乐，口袋妖怪。</p>
-          <p>
-            Based on IPIP Big-Five factor markers (50-item) and the population
-            statistics, I am more introverted than 91%, more neurotic than 81%,
-            less agreeable than 86%, more conscientious than 72%, and more
-            intellectually active than 65% of the general population.
-          </p>
-          <p>
-            根据五大性格特质的测量和人群数据，我自评比91%的人更内向，比81%的人更情绪多变，
-            比86%的人更加不友善，比72%的人更加负责任，比65%的人更加喜欢动脑子。
-          </p>
+          {introduction.map((para, index) => {
+            if (para.type === "paragraph" && para.paragraph.rich_text.length) {
+              return (
+                <p key={index}>{para.paragraph.rich_text[0]?.plain_text}</p>
+              );
+            }
+          })}
         </div>
       </div>
     </div>
   );
 }
 
-export default function Home({ info }) {
+export default function Home({ introduction }) {
   return (
     <div>
       <Head>
         <title>Walt Li</title>
       </Head>
       <Welcome />
-      <About />
+      <About introduction={introduction} />
       <Footer />
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const info = null;
+  const introduction = await getPageContent(process.env.INTRO_PAGE_ID);
 
   return {
     props: {
-      info,
+      introduction,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

@@ -46,16 +46,23 @@ export default function Blog({ posts, tags }) {
         <NavBar />
 
         <div className={styles.tagBar}>
-          <button className={styles.tagButton} onClick={() => setTag("")}>
+          <button
+            className={
+              styles.tagButton + (tag === "" ? ` ${styles.active}` : "")
+            }
+            onClick={() => setTag("")}
+          >
             全部
           </button>
-          {tags.map((tag, index) => (
+          {tags.map((t, index) => (
             <button
               key={index}
-              className={styles.tagButton}
-              onClick={() => setTag(tag)}
+              className={
+                styles.tagButton + (t === tag ? ` ${styles.active}` : "")
+              }
+              onClick={() => setTag(t)}
             >
-              {tag}
+              {t}
             </button>
           ))}
         </div>
