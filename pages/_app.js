@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="mask-icon"
           href="/favicon/safari-pinned-tab.svg"
-          color="#5bbad5"
+          color="#010101"
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#da532c" />
@@ -34,7 +34,6 @@ function MyApp({ Component, pageProps }) {
           name="msapplication-config"
           content="/favicon/browserconfig.xml"
         />
-        <meta name="theme-color" content="#ffffff" />
       </Head>
       <Component {...pageProps} />
     </main>
