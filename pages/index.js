@@ -7,12 +7,12 @@ import { getPageContent } from "../lib/notion";
 function Welcome() {
   return (
     <div className={styles.page}>
-      <div className={styles.container}>
-        <div className={styles.flexContainer}>
+      <div className={styles.cover}>
+        <div className={styles.coverRow}>
           <h1>WALT LI</h1>
           <h1>炬</h1>
         </div>
-        <div className={styles.flexContainer}>
+        <div className={styles.coverRow}>
           <div className="navItem">
             <Link href="/blog">BLOG</Link>
           </div>
@@ -20,7 +20,7 @@ function Welcome() {
             <Link href="/blog">杂文</Link>
           </div>
         </div>
-        <div className={styles.flexContainer}>
+        <div className={styles.coverRow}>
           <div className="navItem">
             <Link href="/gallery">GALLERY</Link>
           </div>
@@ -36,8 +36,8 @@ function Welcome() {
 function About({ introduction }) {
   return (
     <div className={styles.page}>
-      <div className={styles.articleContainer}>
-        <h2>about me</h2>
+      <div className="container">
+        <h2 className={styles.introTitle}>about me</h2>
         <div>
           {introduction.map((para, index) => {
             if (para.type === "paragraph" && para.paragraph.rich_text.length) {
@@ -54,7 +54,7 @@ function About({ introduction }) {
 
 export default function Home({ introduction }) {
   return (
-    <div>
+    <div className={styles.window}>
       <Head>
         <title>Walt Li</title>
       </Head>

@@ -1,6 +1,5 @@
 .frontpage {
-  min-height: 100vh;
-  flex: 1;
+  min-height: 62vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

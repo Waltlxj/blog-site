@@ -1,14 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+HK&display=swap");
-
 html,
 body {
-  padding: 0;
   margin: 0;
-  font-family: "Baskerville", "Noto Serif HK", serif;
   font-size: 16px;
   /* -webkit-font-smoothing: antialiased; */
   /* Fix for webkit rendering */
   -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  min-width: 430px;
+  width: 38%;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+@media (max-width: 430px) {
+  .container {
+    min-width: unset;
+    width: unset;
+  }
 }
 
 a {
@@ -42,9 +52,11 @@ h1 {
   font-size: 2.5rem;
   letter-spacing: 0.15em;
   margin: 0;
+  text-transform: uppercase;
+  word-break: break-word;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   h1 {
     font-size: 2rem;
   }
@@ -61,7 +73,7 @@ h2 {
 p {
   line-height: 1.6em;
   letter-spacing: 0.025em;
-  margin: 0.5em 0;
+  margin: 0.625rem 0;
 }
 
 ul {

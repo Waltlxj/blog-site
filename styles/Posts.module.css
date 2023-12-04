@@ -1,12 +1,10 @@
 .page {
-  margin: 1rem;
-  padding-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
-.container {
-  min-width: 320px;
-  width: 33%;
-  margin: 0 auto;
+.articlePage {
+  margin-bottom: 3rem;
 }
 
 .post {
@@ -65,6 +63,23 @@
   text-decoration: none;
 }
 
+.articleNavbar {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.nextArticle {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .tagButton {
     color: white;
@@ -77,10 +92,7 @@
     border-color: white;
     background-color: white;
   }
-}
-
-.articleHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+  .articleNavbar {
+    background-color: black;
+  }
 }

@@ -3,17 +3,24 @@ import styles from "../../styles/Posts.module.css";
 import Head from "next/head";
 import Link from "next/link";
 
-function ArticleHeader({ prevAndNext }) {
+function ArticleNavbar() {
   return (
-    <div className={styles.articleHeader}>
-      {prevAndNext[1] && (
-        <Link href={`/blog/${encodeURIComponent(prevAndNext[1])}`}>← Prev</Link>
-      )}
+    <div className={styles.articleNavbar}>
       <Link href="/blog">
         <h2>BLOG</h2>
       </Link>
+    </div>
+  );
+}
+
+function NextArticle({ prevAndNext }) {
+  return (
+    <div className={styles.nextArticle}>
+      {prevAndNext[1] && (
+        <Link href={`/blog/${encodeURIComponent(prevAndNext[1])}`}>←上篇</Link>
+      )}
       {prevAndNext[0] && (
-        <Link href={`/blog/${encodeURIComponent(prevAndNext[0])}`}>Next →</Link>
+        <Link href={`/blog/${encodeURIComponent(prevAndNext[0])}`}>下篇→</Link>
       )}
     </div>
   );
@@ -21,14 +28,14 @@ function ArticleHeader({ prevAndNext }) {
 
 export default function Article({ article, pageInfo, prevAndNext }) {
   return (
-    <div className={styles.page}>
+    <div className={styles.articlePage}>
       <Head>
         <title>
           {`Walt Li | ${pageInfo.properties.Name.title[0].plain_text}`}
         </title>
       </Head>
-      <div className={styles.container}>
-        <ArticleHeader prevAndNext={prevAndNext} />
+      <div className="container">
+        <ArticleNavbar />
         <div className={styles.title}>
           <div className={styles.articleh1}>
             <h1>{pageInfo.properties.Name.title[0].plain_text}</h1>
@@ -48,6 +55,7 @@ export default function Article({ article, pageInfo, prevAndNext }) {
             );
           }
         })}
+        <NextArticle prevAndNext={prevAndNext} />
       </div>
     </div>
   );

@@ -1,9 +1,21 @@
 import Head from "next/head";
+import { Noto_Serif_HK } from "next/font/google";
+
 import "../styles/globals.css";
+
+// If loading a variable font, you don't need to specify the font weight
+const notoHK = Noto_Serif_HK({
+  subsets: ["latin"],
+});
 
 function MyApp({ Component, pageProps }) {
   return (
     <main>
+      <style jsx global>{`
+        html {
+          font-family: "Baskerville", ${notoHK.style.fontFamily}, serif;
+        }
+      `}</style>
       <Head>
         <link
           rel="apple-touch-icon"

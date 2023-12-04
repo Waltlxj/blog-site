@@ -42,7 +42,7 @@ export default function Blog({ posts, tags }) {
       <Head>
         <title>Walt Li | Blog</title>
       </Head>
-      <div className={styles.container}>
+      <div className="container">
         <NavBar loc="blog" />
 
         <div className={styles.tagBar}>
