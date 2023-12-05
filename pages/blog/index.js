@@ -18,10 +18,9 @@ function Post(props) {
   );
 }
 
-function Collection({ posts, tag }) {
+function Collection({ posts }) {
   return (
     <>
-      {/* <h2 className={styles.tagTitle}>{tag}</h2> */}
       {posts.map((post, index) => (
         <Post
           key={index}
