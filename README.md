@@ -2,7 +2,7 @@
 
 This is my personal blog built with NextJS and using Notion as CMS.
 
-## Design
+## Structure
 
 - About me
 - Gallery
@@ -12,4 +12,5 @@ This is my personal blog built with NextJS and using Notion as CMS.
 
 - Link thumbnails
 - Article pictures
-- Gallery
+- Reserve tag and scroll when return to posts page
+- Rich text rendering
