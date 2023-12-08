@@ -49,6 +49,12 @@ function ArticleContent({ article }) {
     <article>
       {article.map((block, index) => {
         if (block.type === "paragraph") {
+          if (block.text[0] === "-")
+            return (
+              <p key={index} className={styles.quoteOrigin}>
+                {block.text.slice(1)}
+              </p>
+            );
           return <p key={index}>{block.text}</p>;
         } else if (block.type === "divider") {
           return (

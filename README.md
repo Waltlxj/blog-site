@@ -10,7 +10,7 @@ This is my personal blog built with NextJS and using Notion as CMS.
 
 ## To-do
 
-- Link thumbnails
-- Article pictures
-- Reserve tag and scroll when return to posts page
+- Better/Bigger English font
+- Reserve scroll when return to posts page
 - Rich text rendering
+- Link thumbnails

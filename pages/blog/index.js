@@ -1,10 +1,10 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import NavBar from "../../components/NavBar";
 import Link from "next/link";
 import styles from "../../styles/Posts.module.css";
 
 import { getBlogOverview } from "../../lib/notion";
-import { useState } from "react";
 
 function Post(props) {
   return (
@@ -35,7 +35,15 @@ function Collection({ posts }) {
 }
 
 export default function Blog({ posts, tags }) {
-  const [tag, setTag] = useState("");
+  const router = useRouter();
+  const filter = router.query.filter;
+  const updateFilterQuery = (filter) =>
+    router.push(
+      { pathname: router.pathname, query: { filter: filter } },
+      undefined,
+      { shallow: true }
+    );
+
   return (
     <div className={styles.page}>
       <Head>
@@ -47,9 +55,10 @@ export default function Blog({ posts, tags }) {
         <div className={styles.tagBar}>
           <button
             className={
-              styles.tagButton + (tag === "" ? ` ${styles.active}` : "")
+              styles.tagButton +
+              (!filter || filter === "all" ? ` ${styles.active}` : "")
             }
-            onClick={() => setTag("")}
+            onClick={() => updateFilterQuery("all")}
           >
             全部
           </button>
@@ -57,23 +66,21 @@ export default function Blog({ posts, tags }) {
             <button
               key={index}
               className={
-                styles.tagButton + (t === tag ? ` ${styles.active}` : "")
+                styles.tagButton + (t === filter ? ` ${styles.active}` : "")
               }
-              onClick={() => setTag(t)}
+              onClick={() => updateFilterQuery(t)}
             >
               {t}
             </button>
           ))}
         </div>
 
-        {/* if no tag selected */}
-        {tag === "" && <Collection posts={posts} />}
-
-        {/* if tag selected */}
-        {tag !== "" && (
+        {!filter || filter === "all" ? (
+          <Collection posts={posts} />
+        ) : (
           <Collection
             posts={posts.filter(
-              (post) => post.properties.Tags.multi_select[0].name === tag
+              (post) => post.properties.Tags.multi_select[0].name === filter
             )}
           />
         )}
